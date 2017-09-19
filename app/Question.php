@@ -9,9 +9,9 @@ class Question extends Model
     protected $table = 'question';
     protected $guarded = array();
 
-    public function Option()
+    public function option()
     {
-        return $this->hasMany('App\QuestionOption');
+        return $this->hasMany('App\QuestionOption','question_id');
     }
     public $timestamps = false;
 }

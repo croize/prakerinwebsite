@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
+use App\QuestionOption;
+use Illuminate\Support\Facades\DB;
 
 class QuestionController extends Controller
 {
@@ -14,8 +16,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $qu = Question::all();
-        return view('admin.question.index')->with('q', $qu);
+        $e = Question::find(id);
+        $qi = DB::table('question_option')->where('question_id', $e->id)->value('option_text');
+        return view('admin.question.index')->with('q', $qu)->with('w', $qi);
     }
 
     /**
