@@ -37,21 +37,23 @@ class QuestionOptionController extends Controller
      */
     public function store(Request $request)
     {
-      for ($i=0; $i <= 4; $i++) {
-        $this->validate($request, [
-          'question_id' => 'required',
-          'option_text' => 'required',
-          'correct' => 'required',
-        ]);
-        $idpertanyaan = $request->input('question_id');
-        $option = $request->input('option_text_.$i');
-        $correct = $request->input('correct');
-        $yu = new QuestionOption;
-        $yu->question_id =$idpertanyaan ;
-        $yu->option_text =$option;
-        $yu->correct =$correct;
-        $yu->save();
+
+      $a = Question::create([
+        'question' => $request->input('question'),
+        'minat' => $request->input('minat'),
+      ]);
+
+      for ($i=1; $i <= 4; $i++) {
+        $option = $request->input('option_text_'.$i,'');
+        if ($option != '') {
+          QuestionOption::create([
+            'question_id' => $a->id,
+            'option_text' => $request->input('option_text_'.$i),
+            'correct' => $request->input('correct_'.$i),
+          ]);
         }
+        }
+
         return redirect('qoption');
     }
 
