@@ -16,7 +16,6 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $e = Question::find(id);
         $qi = DB::table('question_option')->where('question_id', $e->id)->value('option_text');
         return view('admin.question.index')->with('q', $qu)->with('w', $qi);
     }
