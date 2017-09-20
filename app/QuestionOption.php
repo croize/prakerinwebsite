@@ -8,7 +8,7 @@ class QuestionOption extends Model
 {
     protected $table = 'question_option';
     protected $guarded = array();
-    public function Question()
+    public function question()
     {
         return $this->belongsTo('App\Question');
     }
