@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Question;
-use App\QuestionOption;
+use App\Score;
 use Illuminate\Support\Facades\DB;
 
-class QuestionController extends Controller
+class ScoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $ca = Question::with('option')->get();
-        $qi = QuestionOption::all();
-        return view('admin.question.index')->with('c', $ca)->with('w', $qi);
+        //
     }
 
     /**
@@ -28,7 +25,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('admin.question.create');
+        //
     }
 
     /**
@@ -39,16 +36,7 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-      $this->validate($request, [
-      'question' => 'required',
-      'score' => 'required',
-      ]);
-        $a = new Question;
-        $a->question = $request->question;
-        $a->score = $request->score;
-        $a->save();
-
-        return redirect('question');
+            dd($request->answer_);
     }
 
     /**

@@ -14,6 +14,7 @@
 Route::resource('/event', 'UserEventController');
 Route::resource('/', 'MagangController');
 Route::resource('/as', 'MagangController');
+Route::resource('/score', 'ScoreController');
 
 
 Auth::routes();
