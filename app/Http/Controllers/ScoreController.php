@@ -36,7 +36,10 @@ class ScoreController extends Controller
      */
     public function store(Request $request)
     {
-            dd($request->answer_);
+      for ($i=5; $i <= 6 ; $i++) {
+        $ac = $request->input('answer_'.$i);
+        dd($ac);
+      }
     }
 
     /**
