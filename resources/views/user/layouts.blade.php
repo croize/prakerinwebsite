@@ -12,11 +12,13 @@
   <link rel="stylesheet" href="{{url('assets/font-awesome/css/font-awesome.min.css')}}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{url('assets/Ionicons/css/ionicons.min.css')}}">
+  @yield('css')
   <!-- Theme style -->
   <link rel="stylesheet" href="{{url('assets/css/AdminLTE.min.css')}}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{{url('assets/css/_all-skins.min.css')}}">
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,9 +38,9 @@
     <!-- Logo -->
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>P</b>WB</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Pra</b>WEB</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -148,23 +150,8 @@
 
                 <p>
                   {{Auth::user()->name}} - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <small>Member since {{date('d F Y', strtotime(Auth::user()->created_at))}}</small>
                 </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
@@ -257,10 +244,9 @@
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      <b>Version</b> 1.0.1
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2017 Shaffindo</strong>
   </footer>
 
   <!-- Control Sidebar -->
@@ -300,8 +286,10 @@
 <script src="{{ url('assets/fastclick/lib/fastclick.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ url('assets/js/adminlte.min.js')}}"></script>
+@yield('js')
 <!-- AdminLTE for demo purposes -->
 <script src="{{ url('assets/js/demo.js')}}"></script>
+
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree()

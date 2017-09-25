@@ -11,18 +11,24 @@
 |
 */
 
-Route::resource('/event', 'UserEventController');
-Route::resource('/', 'MagangController');
-Route::resource('/as', 'MagangController');
+
+
 Route::resource('/score', 'ScoreController');
-
-
 Auth::routes();
 Route::group(['middleware' => 'revalidate'],function(){
 Route::get('/home', 'HomeController@index');
+//admin
 Route::resource('/aevent', 'AdminEventController');
 Route::resource('/question' , 'QuestionController');
 Route::resource('/qoption' , 'QuestionOptionController');
+//End Admin
+
+//User
+Route::resource('/event', 'UserEventController');
+Route::resource('/', 'MagangController');
+Route::resource('/as', 'MagangController');
+Route::resource('/user/profile', 'UserProfileController');
+//End User
 });
 Route::get('user/activation/{token}', 'Auth\RegisterController@activateUser')->name('user.activate');
 Route::get('error', function(){
