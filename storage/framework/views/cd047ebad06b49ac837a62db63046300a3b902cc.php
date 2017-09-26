@@ -31,7 +31,10 @@
       ]); ?>;
   </script>
 
-  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
   <script src="assets/owl-carousel/owl.carousel.js"></script>
   <script src="assets/tether/tether.min.js"></script>
   <script src="assets/popper/popper.min.js"></script>
@@ -50,8 +53,6 @@
 </head>
 <body>
 <section class="menu cid-qtKU0yOMIy" once="menu" id="menu1-14" data-rv-view="543">
-
-
 
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -297,7 +298,12 @@
         </div>
     </div>
 </section>
+<form class="" action="/count/1" method="POST" id="as">
+  <?php echo e(csrf_field()); ?>
 
+  <input type="hidden" name="_method" value="PUT">
+  <input type="text" name="visitCount" value="<?php echo e($cut); ?>" id="cnth">
+</form>
 <section class="cid-qtKJJSDYIc" id="social-buttons3-u" data-rv-view="563">
 
 
@@ -466,5 +472,22 @@ $(document).ready(function() {
         </div>
     </div>
 </section>
+
 </body>
+<script>
+setTimeout(function() {
+     var $formVar = $('#as');
+
+     let visitCount = document.getElementById('cnth').value;
+
+     let visitCountPlusOne = parseInt(visitCount) + 1;
+     document.getElementById('cnth').value = visitCountPlusOne;
+
+     $.ajax({
+       url: $formVar.prop('/count/1'),
+       method: 'PUT',
+       data: $formVar.serialize(),
+     });
+     },1000);
+</script>
 </html>

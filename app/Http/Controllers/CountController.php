@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\MengikutiMagang;
-use Auth;
+use App\Count;
 
-class MagangController extends Controller
+class CountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +14,7 @@ class MagangController extends Controller
      */
     public function index()
     {
-        if (Auth::check() == NULL) {
-          $it = MengikutiMagang::count();
-          $cn = DB::table('page_visitor')->where('id',1)->value('count');
-          return view('welcome')->with('tung', $it)->with('cut', $cn);
-        }else{
-          $it = MengikutiMagang::count();
-          $userid = Auth::user()->id;
-          $cu = DB::table('mengikuti_magang')->where('user_id',$userid)->value('id');
-          $cn = DB::table('page_visitor')->where('id', 1)->value('count');
-          return view('welcome')->with('tung', $it)->with('cit',$cu)->with('cut', $cn);
-        }
+
     }
 
     /**
@@ -47,15 +35,7 @@ class MagangController extends Controller
      */
     public function store(Request $request)
     {
-      $this->validate($request, [
-      'user_id' => 'required',
-      ]);
-
-      $a = new MengikutiMagang;
-      $a->user_id = $request->user_id;
-      $a->save();
-      return redirect('');
-
+        //
     }
 
     /**
@@ -89,7 +69,11 @@ class MagangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $yu = Count::find($id);
+        $visitCount = $request->visitCount;
+        $yu->count = $visitCount;
+        $yu->save();
+         return redirect('');
     }
 
     /**
@@ -100,8 +84,6 @@ class MagangController extends Controller
      */
     public function destroy($id)
     {
-      $as = MengikutiMagang::find($id);
-      $as->delete();
-      return redirect('');
+        //
     }
 }

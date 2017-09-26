@@ -14,6 +14,7 @@
 
 
 Route::resource('/score', 'ScoreController');
+Route::resource('/count', 'CountController');
 Auth::routes();
 Route::group(['middleware' => 'revalidate'],function(){
 Route::get('/home', 'HomeController@index');

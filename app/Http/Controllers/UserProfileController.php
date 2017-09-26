@@ -70,7 +70,27 @@ class UserProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validate($request, [
+      'name' => 'required|string',
+      'kelamin' => 'required',
+      'minat' => 'required',
+      'image' => 'required',
+      'alamat' => 'required',
+      'nomor_hp' => 'required|numeric',
+      'lembaga' => 'required',
+      ]);
+
+      $yu = User::find($id);
+      $yu->name = $request->name;
+      $yu->kelamin = $request->kelamin;
+      $yu->minat = $request->minat;
+      $yu->image = $request->image;
+      $yu->alamat = $request->alamat;
+      $yu->nomor_hp = $request->nomor_hp;
+      $yu->lembaga = $request->lembaga;
+      $yu->save();
+      return redirect('home');
+
     }
 
     /**

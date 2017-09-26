@@ -51,8 +51,6 @@
 <body>
 <section class="menu cid-qtKU0yOMIy" once="menu" id="menu1-14" data-rv-view="543">
 
-
-
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm bg-color transparent">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
@@ -290,7 +288,11 @@
         </div>
     </div>
 </section>
-
+<form class="" action="/count/1" method="POST" id="as">
+  {{csrf_field()}}
+  <input type="hidden" name="_method" value="PUT">
+  <input type="text" name="visitCount" value="{{$cut}}" id="cnth">
+</form>
 <section class="cid-qtKJJSDYIc" id="social-buttons3-u" data-rv-view="563">
 
 
@@ -459,5 +461,22 @@ $(document).ready(function() {
         </div>
     </div>
 </section>
+
 </body>
+<script>
+setTimeout(function() {
+     var $formVar = $('#as');
+
+     let visitCount = document.getElementById('cnth').value;
+
+     let visitCountPlusOne = parseInt(visitCount) + 1;
+     document.getElementById('cnth').value = visitCountPlusOne;
+
+     $.ajax({
+       url: $formVar.prop('/count/1'),
+       method: 'PUT',
+       data: $formVar.serialize(),
+     });
+     },1000);
+</script>
 </html>
