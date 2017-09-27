@@ -288,17 +288,12 @@
         </div>
     </div>
 </section>
-<form class="" action="/count/1" method="POST" id="as">
+<form class="" action="/count/1" id="as">
   {{csrf_field()}}
-  <input type="hidden" name="_method" value="PUT">
+  <input type="hidden" name="_method" value="put">
   <input type="text" name="visitCount" value="{{$cut}}" id="cnth">
 </form>
 <section class="cid-qtKJJSDYIc" id="social-buttons3-u" data-rv-view="563">
-
-
-
-
-
     <div class="container">
         <div class="media-container-row">
             <div class="col-md-8 align-center">
@@ -464,7 +459,8 @@ $(document).ready(function() {
 
 </body>
 <script>
-setTimeout(function() {
+$(document).ready(function(){
+  setTimeout(function() {
      var $formVar = $('#as');
 
      let visitCount = document.getElementById('cnth').value;
@@ -474,9 +470,11 @@ setTimeout(function() {
 
      $.ajax({
        url: $formVar.prop('/count/1'),
-       method: 'PUT',
+       method: 'POST',
        data: $formVar.serialize(),
      });
-     },1000);
+
+   },1000);
+});
 </script>
 </html>

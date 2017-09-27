@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
 
 class UserProfileController extends Controller
 {
@@ -57,8 +58,17 @@ class UserProfileController extends Controller
      */
     public function edit($id)
     {
-        $ca = User::find($id);
-        return view('user.config.profile')->with('as',$ca);
+      if (Auth::check()) {
+        if (Auth::user()->id != $id) {
+          return redirect('home');
+        }else {
+          $ca = User::find($id);
+          return view('user.config.profile')->with('as',$ca);
+        }
+      }else{
+        return redirect('');
+      }
+
     }
 
     /**
