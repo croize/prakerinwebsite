@@ -20,11 +20,13 @@
     <!-- Animation Css -->
     <link href="{{url('assets/animate-css/animate.css')}}" rel="stylesheet" />
 
+    
     <!-- Custom Css -->
     <link href="{{url('assets/css/style.css')}}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{url('assets/css/themes/all-themes.css')}}" rel="stylesheet" />
+    @yield('css')
 </head>
 
 <body class="theme-red">
@@ -70,7 +72,11 @@
             <!-- User Info -->
             <div class="user-info">
                 <div class="image">
-                    <img src="user/image/avatar-1.png" width="48" height="48" alt="User" />
+                  @if(Auth::user()->image == NULL)
+                    <img src="{{url('user/image/user.png')}}" width="48" height="48" alt="User" />
+                  @else
+                    <img src="user/image/{{Auth::user()->image}}" width="48" height="48" alt="User" />
+                  @endif
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</div>
@@ -290,10 +296,14 @@
     <!-- Slimscroll Plugin Js -->
     <script src="{{url('assets/jquery-slimscroll/jquery.slimscroll.js')}}"></script>
 
+
     <!-- Waves Effect Plugin Js -->
     <script src="{{url('assets/node-waves/waves.js')}}"></script>
 
+    @yield('js')
+
     <!-- Custom Js -->
+
     <script src="{{url('assets/js/admin.js')}}"></script>
 
     <!-- Demo Js -->
